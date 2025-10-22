@@ -3,7 +3,7 @@ import Workspace from "../models/Workspace.model.js";
 class WorkspaceRepository {
     static async create(name, url_image) {
         try {
-            await Workspace.insertOne({
+            return await Workspace.insertOne({
                 name: name,
                 url_image: url_image
             })
