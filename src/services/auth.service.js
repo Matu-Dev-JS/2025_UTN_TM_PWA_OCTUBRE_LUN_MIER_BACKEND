@@ -108,7 +108,7 @@ class AuthService {
             {
                 name: user_found.name,
                 email: user_found.email,
-                id: user_found.id,
+                id: user_found._id,
             },
             ENVIRONMENT.JWT_SECRET,
             {
