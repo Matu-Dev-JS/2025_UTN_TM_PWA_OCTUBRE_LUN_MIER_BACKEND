@@ -83,7 +83,32 @@ class WorkspaceController {
 
     static async invite(request, response){
         try{
+            const {member, workspace_selected, user} = request
+            const {email_invited, role_invited} = request.body
 
+            /* 
+                - Verificar que exista un usuario (EN LA DB) con el email_invited
+                    Por?: Hay que checkear que el usuario invitado existe
+                    EJEMPLO: Los invito a un grupo de wsp y ustedes no tienen wsp
+                    Sino existe tirar error 404
+                
+                - Verificar que YA NO ESTE en el workspace, sino seria un miembro duplicado
+
+                - Generar un token con: 
+                {
+                    id_invited,
+                    id_inviter,
+                    id_workspace,
+                    invited_role
+                }
+                
+                - Enviar el mail de invitacion
+                    Ejemplo: 
+                        `
+                        <h1>Has sido invitado al workspace: ${workspace_select.name}</h1>
+                        <a href="${URL_FRONTEND}/api/member/confirm/${invite_token}"">Aceptar</a>
+                        `
+            */
         }
          catch(error){
             if(error.status){
