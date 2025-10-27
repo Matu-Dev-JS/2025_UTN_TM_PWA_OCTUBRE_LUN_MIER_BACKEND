@@ -44,4 +44,12 @@ workspaceRouter.get(
     }
 )
 
+
+workspaceRouter.post(
+    '/:workspace_id/invite', 
+    authMiddleware, 
+    workspaceMiddleware(['admin']), 
+    WorkspaceController.invite
+)
+
 export default workspaceRouter
