@@ -1,5 +1,12 @@
+
+import ENVIRONMENT from "../config/environment.config.js"
+import mailTransporter from "../config/mailTransporter.config.js"
+import { ServerError } from "../error.js"
+import MemberWorkspaceRepository from "../repositories/memberWorkspace.repository.js"
+import UserRepository from "../repositories/user.repository.js"
 import WorkspaceRepository from "../repositories/workspace.repository.js"
 import WorkspaceService from "../services/workspace.service.js"
+import jwt from 'jsonwebtoken'
 
 class WorkspaceController {
     static async getAll (request, response){
@@ -85,7 +92,13 @@ class WorkspaceController {
         try{
             const {member, workspace_selected, user} = request
             const {email_invited, role_invited} = request.body
-
+           
+            await WorkspaceService.invite(member, workspace_selected, email_invited, role_invited)
+            response.json({
+                status: 200,
+                message: 'Invitacion enviada',
+                ok: true
+            })
             /* 
                 - Verificar que exista un usuario (EN LA DB) con el email_invited
                     Por?: Hay que checkear que el usuario invitado existe
