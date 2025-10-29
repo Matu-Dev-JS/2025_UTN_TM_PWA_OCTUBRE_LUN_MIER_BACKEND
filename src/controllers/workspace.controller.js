@@ -6,6 +6,7 @@ import ChannelRepository from "../repositories/channel.repository.js"
 import MemberWorkspaceRepository from "../repositories/memberWorkspace.repository.js"
 import UserRepository from "../repositories/user.repository.js"
 import WorkspaceRepository from "../repositories/workspace.repository.js"
+import ChannelService from "../services/channel.service.js"
 import WorkspaceService from "../services/workspace.service.js"
 import jwt from 'jsonwebtoken'
 
@@ -151,7 +152,7 @@ class WorkspaceController {
         try{
             const {workspace_selected, member, user} = request
 
-            const channels = await ChannelRepository.getAllByWorkspaceId(workspace_selected._id)
+            const channels = await ChannelService.getAllByWorkspaceId(workspace_selected._id)
 
             response.json(
                 {
