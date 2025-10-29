@@ -64,5 +64,16 @@ class ChannelRepository {
             throw error
         }
     }
+
+    static async getByIdAndWorkspaceId(workspace_id, channel_id) {
+        try {
+            const found_channel = await Channel.findOne({ id_workspace: workspace_id, _id: channel_id })
+            return found_channel
+        }
+        catch (error) {
+            console.error(error)
+            throw error
+        }
+    }
 }
 export default ChannelRepository

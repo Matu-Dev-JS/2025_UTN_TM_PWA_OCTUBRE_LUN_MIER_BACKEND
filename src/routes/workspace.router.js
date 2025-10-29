@@ -4,6 +4,8 @@ import WorkspaceController from '../controllers/workspace.controller.js'
 import authMiddleware from '../middlewares/authMiddleware.js'
 import workspaceMiddleware from '../middlewares/workspaceMiddleware.js'
 import ChannelController from '../controllers/channel.controller.js'
+import channelMiddleware from '../middlewares/channelMiddleware.js'
+import MessagesController from '../controllers/messages.controller.js'
 
 const workspaceRouter = express.Router()
 
@@ -57,6 +59,15 @@ workspaceRouter.post(
     authMiddleware,
     workspaceMiddleware(['admin']), // => Solo miembros con rol de administrador pueden crear canales
     ChannelController.create
+)
+
+//Crear mensajes
+workspaceRouter.post(
+    '/:workspace_id/channels/:channel_id/messages',
+    authMiddleware,
+    workspaceMiddleware(),
+    channelMiddleware,
+    MessagesController.getAllByChannelId
 )
 
 
