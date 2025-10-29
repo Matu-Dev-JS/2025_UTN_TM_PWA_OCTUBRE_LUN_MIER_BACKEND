@@ -9,6 +9,8 @@ import WorkspaceService from "../services/workspace.service.js"
 import jwt from 'jsonwebtoken'
 
 class WorkspaceController {
+
+    
     static async getAll (request, response){
         try{
             //Muestro los datos de sesion del usuario
@@ -144,9 +146,9 @@ class WorkspaceController {
         }
     }
 
-    static async getById (){
+    static async getById (request, response){
         try{
-
+            const {workspace_selected, member, user} = request
         }
          catch(error){
             if(error.status){
