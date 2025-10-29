@@ -2,6 +2,7 @@
 import ENVIRONMENT from "../config/environment.config.js"
 import mailTransporter from "../config/mailTransporter.config.js"
 import { ServerError } from "../error.js"
+import ChannelRepository from "../repositories/channel.repository.js"
 import MemberWorkspaceRepository from "../repositories/memberWorkspace.repository.js"
 import UserRepository from "../repositories/user.repository.js"
 import WorkspaceRepository from "../repositories/workspace.repository.js"
@@ -149,6 +150,20 @@ class WorkspaceController {
     static async getById (request, response){
         try{
             const {workspace_selected, member, user} = request
+
+            const channels = await ChannelRepository.getAllByWorkspaceId(workspace_selected._id)
+
+            response.json(
+                {
+                    ok:true, 
+                    status: 200,
+                    message: 'Espacio de trabajo obtenido',
+                    data: {
+                        workspace_detail: workspace_selected,
+                        channels: channels
+                    }
+                }
+            )
         }
          catch(error){
             if(error.status){
