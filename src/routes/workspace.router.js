@@ -29,6 +29,19 @@ workspaceRouter.post(
     WorkspaceController.create
 )
 
+// GET /workspaces/:workspace_id
+/* 
+- Obtener los detalles de un espacio de trabajo
+- Cargar la lista de canales de un espacio de trabajo
+*/
+workspaceRouter.get(
+    '/:workspace_id',
+    authMiddleware,
+    workspaceMiddleware(),
+    WorkspaceController.getById
+)
+
+
 workspaceRouter.get(
     '/:workspace_id/test',
     authMiddleware,
