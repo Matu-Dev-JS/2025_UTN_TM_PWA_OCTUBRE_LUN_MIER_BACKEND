@@ -1,5 +1,5 @@
 class ChannelController {
-    static async createChannel(request, response) {
+    static async create(request, response) {
         try {
             const {workspace_selected, user, member} = request
             //Hasta este punto ya se valido que sea miembro, administrador y en que espacio de trabajo estamos trabajando
