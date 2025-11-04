@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 const MessageChannelSchema= new mongoose.Schema(
     {
-        chanel_id:{
+        channel_id:{
             type:mongoose.Schema.Types.ObjectId,
             required:true,
             ref:'Channel',

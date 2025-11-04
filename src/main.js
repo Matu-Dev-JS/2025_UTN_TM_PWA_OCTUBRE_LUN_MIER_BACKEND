@@ -5,6 +5,8 @@ import authRouter from "./routes/auth.router.js";
 import workspaceRouter from "./routes/workspace.router.js";
 import cors from 'cors'
 import memberRouter from "./routes/member.router.js";
+import MessagesChannelRepository from "./repositories/messageChannel.repository.js";
+import ChannelRepository from "./repositories/channel.repository.js";
 
 
 connectToMongoDB()
@@ -38,3 +40,15 @@ app.listen(
         console.log(`Tu servidor se esta ejecutando correctamente en el puerto ${ENVIRONMENT.PORT}`)
     }
 )
+
+/* ChannelRepository.getAllByWorkspaceId() */
+
+
+/* MessagesChannelRepository.create(
+    "69021f8d1f59e8d52c3e60f8",
+    "68f8d8cc6968605f86bc6c90",
+    'hola'
+) */
+/* MessagesChannelRepository.getAllByChannelId("69021f8d1f59e8d52c3e60f8").then(
+    (messages) => console.log(messages[0])
+) */
