@@ -80,7 +80,6 @@ workspaceRouter.get(
     workspaceMiddleware(),
     channelMiddleware,
     MessagesController.getAllByChannelId
-    
 )
 
 
