@@ -61,13 +61,25 @@ workspaceRouter.post(
     ChannelController.create
 )
 
+//CONSIGNA:
+//Crear los controladores para crear mensajes y obtener mensajes
+//Siempre que se cree o obtenga la lista el servidor debera responder con la lista de mensajes
+
 //Crear mensajes
 workspaceRouter.post(
     '/:workspace_id/channels/:channel_id/messages',
     authMiddleware,
     workspaceMiddleware(),
     channelMiddleware,
-    MessagesController.getAllByChannelId
+  
+)
+//Obtener mensajes
+workspaceRouter.get(
+    '/:workspace_id/channels/:channel_id/messages',
+    authMiddleware,
+    workspaceMiddleware(),
+    channelMiddleware,
+    
 )
 
 
