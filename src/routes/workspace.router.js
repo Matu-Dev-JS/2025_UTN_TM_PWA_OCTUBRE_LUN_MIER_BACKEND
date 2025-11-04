@@ -71,7 +71,7 @@ workspaceRouter.post(
     authMiddleware,
     workspaceMiddleware(),
     channelMiddleware,
-  
+    MessagesController.create
 )
 //Obtener mensajes
 workspaceRouter.get(
@@ -79,6 +79,7 @@ workspaceRouter.get(
     authMiddleware,
     workspaceMiddleware(),
     channelMiddleware,
+    MessagesController.getAllByChannelId
     
 )
 

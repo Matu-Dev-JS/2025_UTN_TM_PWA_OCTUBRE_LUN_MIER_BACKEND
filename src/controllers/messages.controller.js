@@ -1,4 +1,4 @@
-import MessageService from "../services/messages.service"
+import MessageService from "../services/messages.service.js"
 
 class MessagesController {
     static async getAllByChannelId(request, response){
@@ -15,7 +15,23 @@ class MessagesController {
             });
         }
         catch(error){
-
+            if(error.status){
+                return response.status(error.status).json({
+                    ok:false,
+                    message: error.message,
+                    status: error.status
+                })
+            }
+            else{
+                console.error(
+                    'ERROR AL REGISTRAR', error
+                )
+                return response.status(500).json({
+                    ok: false,
+                    message: 'Error interno del servidor',
+                    status: 500
+                })
+            }
         }
     }
 
@@ -28,7 +44,7 @@ class MessagesController {
             //(Para la clase que viene) Obtener la lista de mensajes y responder
             const {messages, message_created} = await MessageService.create(content, member._id, channel_selected._id)
 
-            response.status(201).json({
+            return response.status(201).json({
                 ok: true,
                 status: 201,
                 message: "Messages created",
@@ -39,7 +55,23 @@ class MessagesController {
             });
         }
         catch(error){
-
+            if(error.status){
+                return response.status(error.status).json({
+                    ok:false,
+                    message: error.message,
+                    status: error.status
+                })
+            }
+            else{
+                console.error(
+                    'ERROR AL REGISTRAR', error
+                )
+                return response.status(500).json({
+                    ok: false,
+                    message: 'Error interno del servidor',
+                    status: 500
+                })
+            }
         }
     }
 }
