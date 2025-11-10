@@ -48,7 +48,7 @@ body: {
 
 
 workspaceRouter.get(
-    '/:workspace_id',
+    '/:workspace_id/channels',
     authMiddleware,
     workspaceMiddleware(),
     WorkspaceController.getById

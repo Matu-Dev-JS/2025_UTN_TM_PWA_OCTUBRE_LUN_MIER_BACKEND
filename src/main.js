@@ -7,6 +7,8 @@ import cors from 'cors'
 import memberRouter from "./routes/member.router.js";
 import MessagesChannelRepository from "./repositories/messageChannel.repository.js";
 import ChannelRepository from "./repositories/channel.repository.js";
+import { checkConnection } from "./config/configMysql.config.js";
+import UserRepository from "./repositories/user.repository.js";
 
 
 connectToMongoDB()
@@ -52,3 +54,7 @@ app.listen(
 /* MessagesChannelRepository.getAllByChannelId("69021f8d1f59e8d52c3e60f8").then(
     (messages) => console.log(messages[0])
 ) */
+
+checkConnection()
+
+UserRepository.create('test', 'test@gmail.com', 'Test')
