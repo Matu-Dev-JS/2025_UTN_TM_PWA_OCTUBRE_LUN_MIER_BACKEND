@@ -145,12 +145,7 @@ class UserRepository {
                 WHERE ${TABLE.COLUMNS.ID} = ?
             `
             const [result] = await pool.query(sql, [user_id])
-            if (result.affectedRows > 0) {
-                return true
-            }
-            else {
-                return false
-            }
+            return result.affectedRows > 0
         }
         catch (error) {
             console.error('[SERVER ERROR]: no se pudo eliminar el usuario con id ' + user_id, error)
