@@ -25,6 +25,12 @@ app.use(express.json())
 app.use('/api/auth', authRouter)
 app.use('/api/workspace', workspaceRouter)
 app.use('/api/member', memberRouter)
+app.use('/api/test', (req, res) => {
+    res.json({
+        ok: true,
+        message: 'Todo ok'
+    })
+})
 
 /* mailTransporter.sendMail(
     {
@@ -57,4 +63,3 @@ app.listen(
 
 checkConnection()
 
-UserRepository.create('test', 'test@gmail.com', 'Test')

@@ -17,8 +17,7 @@ const TABLE = {
 
 class UserRepository {
 
-    /* 
-    MONGO DB
+    //MONGO DB
     static async create(name, email, password) {
         try {
             return await User.insertOne({
@@ -31,20 +30,51 @@ class UserRepository {
             console.error('[SERVER ERROR]: no se pudo crear el usuario', error)
             throw error
         }
-    } 
-    */
+    }
 
+    static async getById(user_id) {
+        try {
+            const user_found = await User.findById(user_id)
+            return user_found
+        }
+        catch (error) {
+            console.error('[SERVER ERROR]: no se pudo obtener el usuario con id ' + user_id, error)
+            throw error
+        }
+    }
+
+    static async getByEmail(email) {
+        const user_found = await User.findOne({
+            email: email,
+            active: true
+        })
+        return user_found
+    }
+
+    static async deleteById(user_id) {
+        const response = await User.findByIdAndDelete(user_id)
+        return response
+    }
+
+    static async updateById(user_id, update_user) {
+        console.log(user_id, update_user)
+        await User.findByIdAndUpdate(
+            user_id,
+            update_user
+        )
+    }
+
+
+
+
+
+
+
+    
+    /* 
+    //MYSQL
     static async create(name, email, password) {
         try {
-
-            /* 
-            Quiero ejecutar esta query
-            INSERT INTO users 
-            (name, email, password) 
-            VALUES
-            ("pepe", "pepe@gmail.com", "pepe_123")
-            
-            */
 
             let sql = `
                 INSERT INTO ${TABLE.NAME} 
@@ -77,18 +107,6 @@ class UserRepository {
         }
     }
 
-    /* 
-    MONGODB
-    static async getById(user_id) {
-        try{    
-            const user_found = await User.findById(user_id)
-            return user_found
-        }
-        catch(error){
-            console.error('[SERVER ERROR]: no se pudo obtener el usuario con id ' + user_id, error)
-            throw error
-        }
-    } */
 
     static async getById(user_id) {
         try {
@@ -104,16 +122,6 @@ class UserRepository {
         }
     }
 
-    /*  
-    MONGO DB
-    static async getByEmail (email){
-         const user_found = await User.findOne({
-             email: email, 
-             active: true
-         })
-         return user_found
-     }
-  */
 
 
     static async getByEmail(email) {
@@ -131,12 +139,7 @@ class UserRepository {
         }
     }
 
-    /* 
-    MongoDB
-    static async deleteById (user_id){
-        const response = await User.findByIdAndDelete(user_id)
-        return response
-    } */
+
 
     static async deleteById(user_id) {
         try {
@@ -153,16 +156,9 @@ class UserRepository {
         }
     }
 
-    /* static async updateById(user_id, update_user) {
-        console.log(user_id, update_user)
-        await User.findByIdAndUpdate(
-            user_id,
-            update_user
-        )
-    } */
 
     static async updateById(user_id, update_user) {
-    
+
         const update_fields = Object.keys(update_user) //['verified_email', 'name']
         const update_values = Object.values(update_user)
 
@@ -178,6 +174,8 @@ class UserRepository {
 
         pool.query(sql, [...update_values, user_id])
     }
+ */
+
 }
 
 
